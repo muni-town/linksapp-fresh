@@ -6,7 +6,6 @@ import { useState } from "preact/hooks";
 import { ExternalLink, FileText, Link, List } from "preact-feather";
 
 const options: Intl.DateTimeFormatOptions = {
-  weekday: "long",
   year: "numeric",
   month: "long",
   day: "numeric",
@@ -125,18 +124,18 @@ export default function Tabs(props: TabsProps) {
                   >
                     <h2
                       class={tw
-                        `text-lg font-bold text-gray-900 leading-tight mb-1`}
+                        `text-lg font-bold text-gray-900 leading-snug mb-1 pr-5`}
                     >
                       {update.title}
                     </h2>
                     <h4 class={tw`text-xs font-semibold text-gray-400 mb-2`}>
                       {(new Date(update.date)).toLocaleDateString(
-                        undefined,
+                        "en-US",
                         options,
                       )}
                     </h4>
                     <p class={tw`text-sm text-gray-600`}>
-                      {update.text}
+                      {update.description}
                     </p>
                     {update.url &&
                       (

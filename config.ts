@@ -7,10 +7,17 @@ const user = {
     twitter: "https://twitter.com/",
     instagram: "https://www.instagram.com/",
   },
-  announcement: { title: "title", text: "text" },
+  announcement: {
+    title: "Photo book release!",
+    text: "You can now order my newly released photobook.",
+  },
+  rss: "https://www.nasa.gov/rss/dyn/educationnews.rss",
 };
 
-const links = [{ url: "test", title: "title" }];
-const updates = [{ title: "test", text: "title", date: new Date() }];
+const links = [
+  { url: "#", title: "Photo book" },
+  { url: "#", title: "Website" },
+  { url: "#", title: "Discord" },
+];
 
-export { links, updates, user };
+export { links, user };
