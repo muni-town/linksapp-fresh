@@ -64,7 +64,7 @@ export default function Tabs(props: TabsProps) {
               href="#"
               role="tablist"
             >
-              Updates
+              Feed
             </a>
           </li>
         </ul>
