@@ -1,20 +1,15 @@
-/** @jsx h */
-import { h } from "preact";
-import { tw } from "@twind";
-
 import { Handlers, PageProps } from "$fresh/server.ts";
+import { links, user } from "../config.ts";
+
 import { parseFeed } from "rss/mod.ts";
 import { unescape } from "unescape";
 
-import { links, user } from "../config.ts";
-
-import ProfilePicture from "../islands/ProfilePicture.tsx";
-import Name from "../islands/Name.tsx";
-import Bio from "../islands/Bio.tsx";
-import Readme from "../islands/Readme.tsx";
-import Announcement from "../islands/Announcement.tsx";
-import Tabs from "../islands/Tabs.tsx";
-import SocialAccounts from "../islands/SocialAccounts.tsx";
+import ProfilePictureComponent from "../components/ProfilePictureComponent.tsx";
+import UsernameComponent from "../components/UsernameComponent.tsx";
+import BioComponent from "../components/BioComponent.tsx";
+import SocialLinksComponent from "../components/SocialLinksComponent.tsx";
+import BannerComponent from "../components/BannerComponent.tsx";
+import TabsIsland from "../islands/TabsIsland.tsx";
 
 export const handler: Handlers<any | null> = {
   async GET(_, ctx) {
@@ -52,13 +47,8 @@ export const handler: Handlers<any | null> = {
       };
     });
 
-    //const readmeRequest = await fetch("https://raw.githubusercontent.com/____/master/README.md");
-    //let readmeText = await readmeRequest.text();        
-    //readmeText = readmeText.split(/\r?\n/).map(line => line.slice(-1) === "\\" ? line.slice(0, -1) + "<br />" : line).join("\r\n");
-    //readmeText = marky(readmeText);
-    //console.log(readmeText);
     return ctx.render({
-      updates
+      updates,
     });
   },
 };
@@ -68,32 +58,29 @@ export default function Home({ data }: PageProps<any | null>) {
     return <h1>Failed to fetch external data.</h1>;
   }
 
-  const { avatar, bio, name, announcement, socialAccounts } = user;
+  const { avatar, bio, username, announcement, socialAccounts } = user;
   const { updates } = data;
 
   return (
-    <main class={tw`w-10/12 sm:w-96 mx-auto`}>
-      <div class={tw`flex flex-col w-full mt-12 mb-28`}>
-        <div
-          class={tw`flex flex-col items-center w-full w-full rounded-xl p-4`}
-        >
-          <ProfilePicture
+    <main class="w-10/12 sm:w-96 mx-auto">
+      <div class="flex flex-col w-full mt-12 mb-28">
+        <div class="flex flex-col items-center w-full w-full rounded-xl p-4">
+          <ProfilePictureComponent
             avatar={avatar}
           />
-          <Name name={name} />
-          <Bio
+          <UsernameComponent username={username} />
+          <BioComponent
             bio={bio}
           />
-          <Readme />
-          <SocialAccounts socialAccounts={socialAccounts} />
+          <SocialLinksComponent socialAccounts={socialAccounts} />
           {announcement &&
             (
-              <Announcement
+              <BannerComponent
                 title={announcement.title}
                 text={announcement.text}
               />
             )}
-          <Tabs links={links} updates={updates} />
+          <TabsIsland links={links} updates={updates} />
         </div>
       </div>
     </main>

@@ -1,22 +1,14 @@
-/** @jsx h */
-import { h } from "preact";
-import { tw } from "@twind";
-
 import { Instagram, Linkedin, Twitter, Youtube } from "preact-feather";
 
-export default function SocialAccounts(
-  props: { socialAccounts: any },
-) {
+export default function SocialLinksComponent(props: { socialAccounts: any }) {
   const { socialAccounts } = props;
 
   return (
     <div>
-      <div
-        class={tw`flex justify-center mb-6 space-x-2`}
-      >
+      <div class="flex justify-center mb-6 space-x-2">
         {socialAccounts?.twitter && (
           <a
-            class={tw`rounded-full p-3 bg-gray-100`}
+            class="rounded-full p-3 bg-gray-100"
             href={socialAccounts.twitter}
             target="_blank"
             rel="noopener noreferrer"
@@ -26,7 +18,7 @@ export default function SocialAccounts(
         )}
         {socialAccounts?.instagram && (
           <a
-            class={tw`rounded-full p-3 bg-gray-100`}
+            class="rounded-full p-3 bg-gray-100"
             href={socialAccounts.instagram}
             target="_blank"
             rel="noopener noreferrer"
@@ -36,7 +28,7 @@ export default function SocialAccounts(
         )}
         {socialAccounts?.youtube && (
           <a
-            class={tw`rounded-full p-3 bg-gray-100`}
+            class="rounded-full p-3 bg-gray-100"
             href={socialAccounts.youtube}
             target="_blank"
             rel="noopener noreferrer"
@@ -46,7 +38,7 @@ export default function SocialAccounts(
         )}
         {socialAccounts?.linkedin && (
           <a
-            class={tw`rounded-full p-3 bg-gray-100`}
+            class="rounded-full p-3 bg-gray-100"
             href={socialAccounts.linkedin}
             target="_blank"
             rel="noopener noreferrer"
