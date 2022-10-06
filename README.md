@@ -11,3 +11,7 @@ deno task start
 ```
 
 or deploy using Deno Deploy.
+
+### Badges
+
+[![Made with Fresh](https://fresh.deno.dev/fresh-badge.svg)](https://fresh.deno.dev)
