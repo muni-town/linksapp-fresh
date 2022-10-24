@@ -1,4 +1,4 @@
-type Profile = {
+export type Profile = {
   avatar: string;
   username: string;
   bio: string;
@@ -25,5 +25,3 @@ type Profile = {
   }[];
   rss?: string;
 };
-
-export default Profile;
