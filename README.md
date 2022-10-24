@@ -16,11 +16,11 @@ or deploy using Deno Deploy.
 
 ### Features
 
-* Social links
-* Github readme
-* Banner
-* External links
-* RSS feed
+- Social links
+- Github readme
+- Banner
+- External links
+- RSS feed
 
 ### Badges
 

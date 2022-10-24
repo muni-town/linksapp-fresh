@@ -10,6 +10,9 @@
     "twind/": "https://esm.sh/twind@0.16.17/",
     "rss/": "https://deno.land/x/rss@0.5.6/",
     "unescape": "https://deno.land/x/html_escape@v1.1.5/unescape.ts",
-    "preact-feather": "https://cdn.skypack.dev/preact-feather@4.2.1"
+    "preact-feather": "https://cdn.skypack.dev/preact-feather@4.2.1",
+    "marked": "https://cdn.skypack.dev/marked@4.1.1",
+    "ammonia": "https://deno.land/x/ammonia@0.3.1/mod.ts",
+    "@twind/typography": "https://cdn.skypack.dev/@twind/typography"
   }
 }

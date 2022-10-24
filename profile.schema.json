@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Profile",
+  "description": "Profile configuration properties",
+  "type": "object",
+  "properties": {
+    "avatar": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^(https)://"
+    },
+    "username": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "bio": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "location": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "readme": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^(https)://(.*)(\\.md)$"
+    },
+    "socialAccounts": {
+      "type": "object",
+      "properties": {
+        "dribbble": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^(https)://dribbble.com/"
+        },
+        "facebook": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^(https)://facebook.com/"
+        },
+        "github": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^(https)://github.com/"
+        },
+        "instagram": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^(https)://instagram.com/"
+        },
+        "linkedin": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^(https)://linkedin.com/"
+        },
+        "twitter": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^(https)://twitter.com/"
+        },
+        "youtube": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^(https)://youtube.com/"
+        },
+        "website": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^(https)://"
+        },
+        "mail": {
+          "type": "string",
+          "format": "email"
+        }
+      }
+    },
+    "announcement": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "title",
+        "text"
+      ]
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^(https)://"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+          }
+        },
+        "required": [
+          "url",
+          "title"
+        ]
+      },
+      "minItems": 1
+    },
+    "rss": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^(https)://"
+    }
+  },
+  "required": [
+    "avatar",
+    "username",
+    "links",
+    "bio",
+    "socialAccounts"
+  ]
+}

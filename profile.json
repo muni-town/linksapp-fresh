@@ -1,0 +1,22 @@
+{
+  "$schema": "./profile.schema.json",
+  "avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/1200px-Cat_November_2010-1a.jpg",
+  "username": "John Smith",
+  "links": [
+    { "url": "https://example.com", "title": "Photo book" },
+    { "url": "https://example.com", "title": "Website" },
+    { "url": "https://example.com", "title": "Discord" }
+  ],
+  "bio": "Software Developer / Photographer",
+  "location": "Vienna, Austria",
+  "socialAccounts": {
+    "github": "https://github.com/",
+    "instagram": "https://instagram.com/",
+    "twitter": "https://twitter.com/"
+  },
+  "announcement": {
+    "title": "Photo book release!",
+    "text": "You can now order my newly released photobook."
+  },
+  "rss": "https://www.nasa.gov/rss/dyn/educationnews.rss"
+}
