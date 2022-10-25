@@ -65,21 +65,24 @@ export default function Home({ data }: PageProps<any | null>) {
     <main class="w-10/12 sm:w-96 mx-auto">
       <div class="flex flex-col w-full mt-12 mb-28">
         <div class="flex flex-col items-center w-full w-full rounded-xl p-4">
-          <ProfilePictureComponent
-            avatar={avatar}
-          />
+          <ProfilePictureComponent avatar={avatar} />
           <UsernameComponent username={username} />
-          <BioComponent
-            bio={bio}
-          />
+          <BioComponent bio={bio} />
+          <div class="my-4">
+            <a
+              href="/github"
+              class="bg-gray-100 hover:bg-gray-200 rounded-full px-4 py-2"
+            >
+              Github
+            </a>
+          </div>
           <SocialLinksComponent socialAccounts={socialAccounts} />
-          {announcement &&
-            (
-              <BannerComponent
-                title={announcement.title}
-                text={announcement.text}
-              />
-            )}
+          {announcement && (
+            <BannerComponent
+              title={announcement.title}
+              text={announcement.text}
+            />
+          )}
           <TabsIsland links={links} updates={updates} />
         </div>
       </div>
