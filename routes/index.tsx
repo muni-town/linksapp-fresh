@@ -70,7 +70,7 @@ export default function Home({ data }: PageProps<any | null>) {
           <BioComponent bio={bio} />
           <div class="my-4">
             <a
-              href="/github"
+              href="/github/harshmangalam"
               class="bg-gray-100 hover:bg-gray-200 rounded-full px-4 py-2"
             >
               Github
