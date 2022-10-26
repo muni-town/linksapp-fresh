@@ -40,65 +40,91 @@ export default function Github({ data, params }: PageProps) {
   const username = params.username;
   return (
     <GithubLayout title={`Github | ${username}`}>
-      <div className={`max-w-3xl mx-auto`}>
+      <div class={`max-w-3xl mx-auto`}>
         <a href="/" class="flex items-center space-x-2 text-xl">
           <BackIcon />
           <h6>Go to home</h6>
         </a>
         <div class="mt-6">
-          <img
-            src={user.avatar_url}
-            alt={user.name}
-            className={`w-64 h-64  rounded-full`}
-          />
+          <div>
+            <img
+              src={user.avatar_url}
+              alt={user.name}
+              className={`w-64 h-64  rounded-full`}
+            />
 
-          <div className={`mt-4`}>
-            <h2 className={`text-2xl font-bold`}>{user.name}</h2>
-            <h2 className={`text-xl text-gray-500`}>{user.login}</h2>
-          </div>
-          <p className={`mt-4 text-gray-700 max-w-md`}>{user.bio}</p>
+            <div className={`mt-4`}>
+              <h2 className={`text-2xl font-bold`}>{user.name}</h2>
+              <h2 className={`text-xl text-gray-500`}>{user.login}</h2>
+            </div>
+            <p className={`mt-4 text-gray-700 max-w-md`}>{user.bio}</p>
 
-          <div className={`mt-4 flex items-center space-x-2`}>
-            <a
-              href={`/${username}/followers`}
-              className={`flex items-center space-x-1 hover:text-blue-500`}
-            >
-              <UsersIcon />
-              <p className={`font-medium`}>{user.followers}</p>
-              <p className={`text-gray-600 text-sm`}>
-                {user.followers > 1 ? "followers" : "follower"}
-              </p>
-            </a>
-            <span>&bull;</span>
-            <a
-              href={`/${username}/following`}
-              className={`flex items-center space-x-1 hover:text-blue-500`}
-            >
-              <p className={`font-medium`}>{user.following}</p>
-              <p className={`text-gray-600 text-sm`}>
-                {user.following > 1 ? "followings" : "following"}
-              </p>
-            </a>
-          </div>
+            <div className={`mt-4 flex items-center space-x-2`}>
+              <a
+                href={`/${username}/followers`}
+                className={`flex items-center space-x-1 group`}
+              >
+                <UsersIcon />
+                <p className={`font-medium group-hover:text-blue-500`}>
+                  {user.followers}
+                </p>
+                <p
+                  className={`text-gray-600 text-sm group-hover:text-blue-500`}
+                >
+                  {user.followers > 1 ? "followers" : "follower"}
+                </p>
+              </a>
+              <span>&bull;</span>
+              <a
+                href={`/${username}/following`}
+                className={`flex items-center space-x-1 hover:text-blue-500 group`}
+              >
+                <p className={`font-medium group-hover:text-blue-500`}>
+                  {user.following}
+                </p>
+                <p
+                  className={`text-gray-600 text-sm group-hover:text-blue-500`}
+                >
+                  {user.following > 1 ? "followings" : "following"}
+                </p>
+              </a>
+            </div>
 
-          <div className={`mt-4 flex flex-col space-y-2`}>
-            {user.company && (
-              <InfoItem text={user.company} icon={<CompanyIcon />} />
-            )}
-            {user.location && (
-              <InfoItem text={user.location} icon={<LocationIcon />} />
-            )}
-            {user.blog && (
-              <InfoItem link={user.blog} text={user.blog} icon={<LinkIcon />} />
-            )}
-            {user.twitter_username && (
-              <InfoItem
-                link={`https://twitter.com/${user.twitter_username}`}
-                text={`@${user.twitter_username}`}
-                icon={<TwitterIcon />}
-              />
-            )}
+            <div className={`mt-4 flex flex-col space-y-2`}>
+              {user.company && (
+                <InfoItem text={user.company} icon={<CompanyIcon />} />
+              )}
+              {user.location && (
+                <InfoItem text={user.location} icon={<LocationIcon />} />
+              )}
+              {user.blog && (
+                <InfoItem
+                  link={user.blog}
+                  text={user.blog}
+                  icon={<LinkIcon />}
+                />
+              )}
+              {user.twitter_username && (
+                <InfoItem
+                  link={`https://twitter.com/${user.twitter_username}`}
+                  text={`@${user.twitter_username}`}
+                  icon={<TwitterIcon />}
+                />
+              )}
+            </div>
           </div>
+          <ul class="mt-6">
+            {tabs.map((tab) => (
+              <li>
+                <a
+                  href={`/github/${username}/${tab.href}`}
+                  className=" hover:bg-gray-200 bg-gray-100  px-4 py-2 rounded-full"
+                >
+                  <span>{tab.name}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </GithubLayout>
@@ -109,21 +135,5 @@ const tabs = [
   {
     name: "Repositories",
     href: "repositories",
-  },
-  {
-    name: "Subscriptions",
-    href: "subscriptions",
-  },
-  {
-    name: "Organizations",
-    href: "organizations",
-  },
-  {
-    name: "Events",
-    href: "events",
-  },
-  {
-    name: "Received Events",
-    href: "received_events",
   },
 ];
