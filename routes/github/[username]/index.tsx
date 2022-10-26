@@ -114,13 +114,13 @@ export default function Github({ data, params }: PageProps) {
             </div>
           </div>
           <ul class="mt-6">
-            {tabs.map((tab) => (
+            {links.map((link) => (
               <li>
                 <a
-                  href={`/github/${username}/${tab.href}`}
+                  href={`/github/${username}/${link.href}`}
                   className=" hover:bg-gray-200 bg-gray-100  px-4 py-2 rounded-full"
                 >
-                  <span>{tab.name}</span>
+                  <span>{link.name}</span>
                 </a>
               </li>
             ))}
@@ -131,7 +131,7 @@ export default function Github({ data, params }: PageProps) {
   );
 }
 
-const tabs = [
+const links = [
   {
     name: "Repositories",
     href: "repositories",
