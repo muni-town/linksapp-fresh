@@ -4,24 +4,25 @@ interface RepositoryProps {
   description: string;
   language: string;
   isPrivate: boolean;
-  stargazers_count: number;
-  forks_count: number;
-  html_url: string;
+  stargazersCount: number;
+  forksCount: number;
+  htmlUrl: string;
 }
 export default function Repository({
   name,
   description,
   language,
   isPrivate,
-  stargazers_count,
-  forks_count,
-  html_url,
+  stargazersCount,
+  forksCount,
+  htmlUrl,
 }: RepositoryProps) {
   return (
     <article class={`border border-gray-300  rounded-md p-4`}>
       <div class={`flex items-center justify-between`}>
         <a
-          href={""}
+          href={htmlUrl}
+          target="_blank"
           class={`font-semibold block flex-1 text-blue-500 hover:underline`}
         >
           {name}
@@ -55,7 +56,7 @@ export default function Repository({
               ></path>
             </svg>
           </div>
-          <p class={`text-xs text-gray-600`}>{stargazers_count}</p>
+          <p class={`text-xs text-gray-600`}>{stargazersCount}</p>
         </div>
         <div class={`flex items-center space-x-2`}>
           <div>
@@ -75,7 +76,7 @@ export default function Repository({
               ></path>
             </svg>
           </div>
-          <p class={`text-xs text-gray-600`}>{forks_count}</p>
+          <p class={`text-xs text-gray-600`}>{forksCount}</p>
         </div>
       </div>
     </article>
