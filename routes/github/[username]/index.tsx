@@ -9,6 +9,7 @@ import TwitterIcon from "../../../icons/TwitterIcon.tsx";
 import UsersIcon from "../../../icons/UsersIcon.tsx";
 import BackIcon from "../../../icons/BackIcon.tsx";
 import { Status } from "https://deno.land/std@0.146.0/http/http_status.ts";
+import PageTitle from "../../../components/github/PageTitle.tsx";
 
 export const handler: Handlers = {
   async GET(_, ctx) {
@@ -41,10 +42,7 @@ export default function Github({ data, params }: PageProps) {
   return (
     <GithubLayout title={`Github | ${username}`}>
       <div class={`max-w-3xl mx-auto`}>
-        <a href="/" class="flex items-center space-x-2 text-xl">
-          <BackIcon />
-          <h6>Go to home</h6>
-        </a>
+        <PageTitle title="Go to home" backHref="/" />
         <div class="mt-6">
           <div>
             <img
