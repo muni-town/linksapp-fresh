@@ -13,6 +13,7 @@
     "preact-feather": "https://cdn.skypack.dev/preact-feather@4.2.1",
     "marked": "https://cdn.skypack.dev/marked@4.1.1",
     "ammonia": "https://deno.land/x/ammonia@0.3.1/mod.ts",
-    "@twind/typography": "https://cdn.skypack.dev/@twind/typography"
+    "@twind/typography": "https://cdn.skypack.dev/@twind/typography",
+    "validasaur": "https://deno.land/x/validasaur@v0.15.0/mod.ts"
   }
 }

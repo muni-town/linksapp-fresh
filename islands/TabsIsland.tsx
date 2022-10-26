@@ -13,13 +13,13 @@ const options: Intl.DateTimeFormatOptions = {
 
 interface TabsProps {
   links: any[];
-  updates: any[];
+  feed: any[];
 }
 
 export default function TabsIsland(props: TabsProps) {
   const [openTab, setOpenTab] = useState(1);
 
-  const { links, updates } = props;
+  const { links, feed } = props;
 
   return (
     <div class="flex flex-wrap w-full">
@@ -83,7 +83,7 @@ export default function TabsIsland(props: TabsProps) {
                 </ul>
               </div>
               <div class={`${openTab === 2 ? "block space-y-3" : "hidden"}`}>
-                {updates.length === 0 &&
+                {feed.length === 0 &&
                   (
                     <div class="flex flex-col items-center space-y-1 py-8">
                       <FileText size={32} color="#9ca3af" />
@@ -92,9 +92,9 @@ export default function TabsIsland(props: TabsProps) {
                       </h2>
                     </div>
                   )}
-                {updates.slice().sort((a, b) =>
+                {feed.slice().sort((a, b) =>
                   (new Date(b.date)).getTime() - (new Date(a.date)).getTime()
-                ).map((update) => <FeedEntryComponent update={update} />)}
+                ).map((entry) => <FeedEntryComponent entry={entry} />)}
               </div>
             </div>
           </div>

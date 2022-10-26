@@ -8,30 +8,36 @@ const options: Intl.DateTimeFormatOptions = {
 
 export default function FeedEntryComponent(
   props: {
-    update: { title: string; date: string; description: string; url?: string };
+    entry: { title: string; date: string; description: string; url?: string };
   },
 ) {
-  const { update } = props;
+  const { entry } = props;
 
   return (
     <div class="relative bg-white rounded-2xl px-4 py-4 shadow">
-      <h2 class="text-lg font-bold text-gray-900 leading-snug mb-1 pr-5">
-        {update.title}
-      </h2>
+      <a
+        href={entry.url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <h2 class="text-lg font-bold text-gray-900 leading-snug mb-1 pr-5">
+          {entry.title}
+        </h2>
+      </a>
       <h4 class="text-xs font-semibold text-gray-400 mb-2">
-        {(new Date(update.date)).toLocaleDateString(
+        {(new Date(entry.date)).toLocaleDateString(
           "en-US",
           options,
         )}
       </h4>
       <p class="text-sm text-gray-600">
-        {update.description}
+        {entry.description}
       </p>
-      {update.url &&
+      {entry.url &&
         (
           <a
             class="block absolute top-0 right-0 p-3"
-            href={update.url}
+            href={entry.url}
             target="_blank"
             rel="noopener noreferrer"
           >

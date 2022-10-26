@@ -6,7 +6,7 @@ https://user-images.githubusercontent.com/583842/197329632-af4a373f-d65b-404d-af
 
 ### Usage
 
-Adjust `config.ts` accordingly and start the project:
+Adjust `profile.json` accordingly and start the project:
 
 ```
 deno task start

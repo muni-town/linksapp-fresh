@@ -9,7 +9,7 @@ export default function BannerComponent(
     <div class="bg-purple-100 rounded-2xl px-4 py-4 mb-4 min-w-full">
       <div class="flex space-x-4">
         <div>
-          <Star color={"#968db8"} />
+          <Star size={20} color={"#968db8"} />
         </div>
         <div>
           <h2 class="font-bold text-gray-900 leading-tight mb-1">
