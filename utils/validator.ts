@@ -75,9 +75,9 @@ const validateProfile = async (profile: Profile) => {
 
 export {
   validateAvatar,
-  validateUsername,
   validateBio,
   validateLocation,
-  validateReadme,
   validateProfile,
+  validateReadme,
+  validateUsername,
 };

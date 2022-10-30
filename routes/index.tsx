@@ -9,36 +9,29 @@ import LocationComponent from "../components/LocationComponent.tsx";
 import SocialLinksComponent from "../components/SocialLinksComponent.tsx";
 import BannerComponent from "../components/BannerComponent.tsx";
 import TabsIsland from "../islands/TabsIsland.tsx";
-import ReadmeButtonIsland from "../islands/ReadmeButtonIsland.tsx";
 import ProfileMisconfigComponent from "../components/ProfileMisconfigComponent.tsx";
+import ReadmeButtonComponent from "../components/ReadmeButtonComponent.tsx";
 
 import fetchFeed from "../utils/rss.ts";
-import fetchMarkdown from "../utils/markdown.ts";
 
 type HandlerProps = {
   feed: {
     title: string | undefined;
     date: Date | undefined;
-    description: string | undefined;
     url: string | undefined;
   }[] | undefined;
-  readmeText: string | undefined;
 };
 
 export const handler: Handlers<HandlerProps | null> = {
   async GET(_, ctx) {
     const profile: Profile = jsonProfile;
-    const { readme, rss } = profile;
+    const { rss } = profile;
 
     let feed = undefined;
-    let readmeText = undefined;
-
     if (rss) feed = await fetchFeed(rss);
-    if (readme) readmeText = await fetchMarkdown(readme);
 
     return ctx.render({
       feed,
-      readmeText,
     });
   },
 };
@@ -55,8 +48,9 @@ export default function Home({ data }: PageProps<HandlerProps | null>) {
     socialAccounts,
     announcement,
     links,
+    rss,
   } = profile;
-  const { feed, readmeText } = data;
+  const { feed } = data;
 
   // validate profile configuration
   if (!avatar) {
@@ -96,7 +90,7 @@ export default function Home({ data }: PageProps<HandlerProps | null>) {
           <UsernameComponent username={username} />
           <BioComponent bio={bio} />
           {location && <LocationComponent location={location} />}
-          {readmeText && <ReadmeButtonIsland readmeText={readmeText} />}
+          {rss && <ReadmeButtonComponent />}
           <SocialLinksComponent socialAccounts={socialAccounts} />
           {announcement && (
             <BannerComponent
