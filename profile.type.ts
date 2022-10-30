@@ -15,7 +15,7 @@ type Profile = {
     website?: string;
     mail?: string;
   };
-  announcement?: {
+  banner?: {
     title: string;
     text: string;
   };

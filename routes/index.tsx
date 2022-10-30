@@ -46,7 +46,7 @@ export default function Home({ data }: PageProps<HandlerProps | null>) {
     bio,
     location,
     socialAccounts,
-    announcement,
+    banner,
     links,
     rss,
   } = profile;
@@ -92,10 +92,10 @@ export default function Home({ data }: PageProps<HandlerProps | null>) {
           {location && <LocationComponent location={location} />}
           {rss && <ReadmeButtonComponent />}
           <SocialLinksComponent socialAccounts={socialAccounts} />
-          {announcement && (
+          {banner && (
             <BannerComponent
-              title={announcement.title}
-              text={announcement.text}
+              title={banner.title}
+              text={banner.text}
             />
           )}
           <TabsIsland links={links} feed={feed} />

@@ -12,7 +12,7 @@ const usernameRule = [required, isString, lengthBetween(1, 50)];
 const bioRule = [required, isString, lengthBetween(1, 128)];
 const locationRule = [isString, lengthBetween(1, 128)];
 const readmeRule = [isString, match(/^(https):\/\/(.*)(\.md)$/)];
-const rssRule = [required, isString, match(/^(https):\/\//)];
+const rssRule = [isString, match(/^(https):\/\//)];
 const domainRule = (domain: string) => [required, isString, match(new RegExp(`^(https):\/\/${domain}\/`))];
 const mailRule = [required, isEmail];
 
@@ -79,7 +79,6 @@ export {
   validateFeed,
   validateDomain,
   validateMail,
-
   validateReadme,
   validateUsername,
 };

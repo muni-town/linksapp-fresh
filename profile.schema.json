@@ -78,7 +78,7 @@
         }
       }
     },
-    "announcement": {
+    "banner": {
       "type": "object",
       "properties": {
         "title": {
