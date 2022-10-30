@@ -5,79 +5,81 @@ import {
   match,
   required,
   validate,
-  validateObject,
 } from "validasaur";
-import Profile from "../profile.type.ts";
 
-const avatarRule = [required, isString, match(/^(https):\/\//)];
+const httpsRule = [required, isString, match(/^(https):\/\//)];
 const usernameRule = [required, isString, lengthBetween(1, 50)];
 const bioRule = [required, isString, lengthBetween(1, 128)];
 const locationRule = [isString, lengthBetween(1, 128)];
 const readmeRule = [isString, match(/^(https):\/\/(.*)(\.md)$/)];
+const rssRule = [required, isString, match(/^(https):\/\//)];
+const domainRule = (domain: string) => [required, isString, match(new RegExp(`^(https):\/\/${domain}\/`))];
+const mailRule = [required, isEmail];
 
-const validateAvatar = async (avatar: string) => {
+const validateHttps = async (avatar: string | undefined) => {
   const [passes, _] = await validate({ avatar }, {
-    avatar: avatarRule,
+    avatar: httpsRule,
   });
   return passes;
 };
 
-const validateUsername = async (username: string) => {
+const validateUsername = async (username: string | undefined) => {
   const [passes, _] = await validate({ username }, {
     username: usernameRule,
   });
   return passes;
 };
 
-const validateBio = async (bio: string) => {
+const validateBio = async (bio: string | undefined) => {
   const [passes, _] = await validate({ bio }, {
     bio: bioRule,
   });
   return passes;
 };
 
-const validateLocation = async (location: string) => {
+const validateLocation = async (location: string | undefined) => {
   const [passes, _] = await validate({ location }, {
     location: locationRule,
   });
   return passes;
 };
 
-const validateReadme = async (readme: string) => {
+const validateFeed = async (rss: string | undefined) => {
+  const [passes, _] = await validate({ rss }, {
+    rss: rssRule,
+  });
+  return passes; 
+}
+
+const validateDomain = async (url: string | undefined, domain: string) => {
+  const [passes, _] = await validate({ url }, {
+    url: domainRule(domain),
+  });
+  return passes; 
+}
+
+const validateMail = async (mail: string | undefined) => {
+  const [passes, _] = await validate({ mail }, {
+    mail: mailRule,
+  });
+  return passes; 
+}
+
+const validateReadme = async (readme: string | undefined) => {
   const [passes, _] = await validate({ readme }, {
     readme: readmeRule,
   });
   return passes;
 };
 
-const validateProfile = async (profile: Profile) => {
-  const [passes, errors] = await validate(profile, {
-    avatar: avatarRule,
-    username: usernameRule,
-    bio: bioRule,
-    location: locationRule,
-    readme: readmeRule,
-    socialAccounts: validateObject(true, {
-      dribbble: [isString, match(/^(https):\/\/dribbble.com\//)],
-      facebook: [isString, match(/^(https):\/\/facebook.com\//)],
-      github: [isString, match(/^(https):\/\/github.com\//)],
-      instagram: [isString, match(/^(https):\/\/instagram.com\//)],
-      linkedin: [isString, match(/^(https):\/\/linkedin.com\//)],
-      twitter: [isString, match(/^(https):\/\/twitter.com\//)],
-      youtube: [isString, match(/^(https):\/\/youtube.com\//)],
-      website: [isString, match(/^(https):\/\//)],
-      mail: isEmail,
-    }),
-  });
-
-  return [passes, errors];
-};
-
 export {
-  validateAvatar,
+  validateHttps,
   validateBio,
   validateLocation,
-  validateProfile,
+  validateFeed,
+  validateDomain,
+  validateMail,
+
   validateReadme,
   validateUsername,
 };
