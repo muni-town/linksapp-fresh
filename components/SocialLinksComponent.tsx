@@ -11,7 +11,11 @@ import {
 } from "preact-feather";
 import SocialLinkWrapperComponent from "./SocialLinkWrapperComponent.tsx";
 
-export default function SocialLinksComponent(props: { socialAccounts: any }) {
+import type Profile from "../profile.type.ts";
+
+export default function SocialLinksComponent(
+  props: { socialAccounts: Profile["socialAccounts"] },
+) {
   const { socialAccounts } = props;
 
   const svgProps = {
