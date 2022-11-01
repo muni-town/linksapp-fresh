@@ -1,3 +1,11 @@
+try {
+  const dirStat = Deno.statSync("./linksapp-fresh/");
+  if (dirStat.isDirectory) {
+    console.log(red("💥 Directory ./linksapp-fresh/ already exists."));
+    Deno.exit(1);
+  }
+} catch {}
+
 import {
   Checkbox,
   Confirm,
@@ -5,15 +13,32 @@ import {
   prompt,
 } from "https://deno.land/x/cliffy@v0.25.4/prompt/mod.ts";
 
-import { red } from "https://deno.land/std@0.161.0/fmt/colors.ts";
+import { red, yellow } from "https://deno.land/std@0.161.0/fmt/colors.ts";
 
-try {
-  const dirStat = Deno.statSync("./linksapp-fresh/");
-  if (dirStat.isDirectory) {
-    console.log(red("Directory ./linksapp-fresh/ already exists."));
-    Deno.exit(1);
-  }
-} catch {}
+console.log(yellow("Linksapp Setup Wizard 🪄"));
+console.log("Fork the repo -> https://github.com/commune-org/linksapp-fresh/fork")
+
+const repo: string = await Input.prompt({
+  message: "Forked .git HTTPS URL:",
+  minLength: 7,
+});
+
+const repoDir = repo.split("/").pop()?.replace('.git','');
+
+const cloneCmd = Deno.run({
+  cmd: [
+    "git",
+    "clone",
+    repo,
+  ],
+});
+
+const cloneStatus = await cloneCmd.status();
+
+if (!cloneStatus.success) {
+  console.log(red("💥 Git clone failed. Make sure to provide correct URL."));
+  Deno.exit(1);
+}
 
 const usernameErrorMessage = "Username not valid";
 const bioErrorMessage = "Bio not valid";
@@ -436,25 +461,65 @@ while (addLinks) {
   addLinks = await Confirm.prompt("Add another link?");
 }
 
-const p = Deno.run({
+try {
+  Deno.writeTextFileSync(
+    `./${repoDir}/profile.json`,
+    JSON.stringify(profile),
+  );
+} catch (e) {
+  console.log(red(e));
+  Deno.exit(1);
+}
+
+const gitAddCmd = Deno.run({
   cmd: [
     "git",
-    "clone",
-    "https://github.com/commune-org/linksapp-fresh.git",
+    "add",
+    ".",
   ],
+  cwd: `./${repoDir}`
 });
 
-const s = await p.status();
+const gitAddStatus = await gitAddCmd.status();
 
-if (s.success) {
-  try {
-    Deno.writeTextFileSync(
-      "./linksapp-fresh/profile.json",
-      JSON.stringify(profile),
-    );
-    Deno.exit(0);
-  } catch (e) {
-    console.log(red(e));
-    Deno.exit(1);
-  }
+if (!gitAddStatus.success) {
+  console.log(red('💥 "git add" command failed. Something went wrong.'));
+  Deno.exit(1);
 }
+
+const gitCommitCmd = Deno.run({
+  cmd: [
+    "git",
+    "commit",
+    "-m",
+    '"setup wizard"'
+  ],
+  cwd: `./${repoDir}`
+});
+
+const gitCommitStatus = await gitCommitCmd.status();
+
+if (!gitCommitStatus.success) {
+  console.log(red('💥 "git commit" command failed. Something went wrong.'));
+  Deno.exit(1);
+}
+
+const gitPushCmd = Deno.run({
+  cmd: [
+    "git",
+    "push",
+    "origin",
+    "main"
+  ],
+  cwd: `./${repoDir}`
+});
+
+const gitPushStatus = await gitPushCmd.status();
+
+if (!gitPushStatus.success) {
+  console.log(red('💥 "git push" command failed. Something went wrong.'));
+  Deno.exit(1);
+}
+
+console.log(red('✨ Done!'));
+Deno.exit();
