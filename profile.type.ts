@@ -1,4 +1,5 @@
 type Profile = {
+  $schema: string;
   avatar: string;
   username: string;
   bio: string;

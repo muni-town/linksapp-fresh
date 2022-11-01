@@ -11,12 +11,18 @@ import { parseFeed } from "https://deno.land/x/rss@0.5.6/mod.ts";
 
 const httpsRule = [required, isString, match(/^(https):\/\//)];
 const usernameRule = [required, isString, lengthBetween(1, 50)];
-const imageRule = [required, isString, match(/^https:\/\/.+\.(jpg|jpeg|png|webp|avif|gif|svg)$/)];
+const imageRule = [
+  required,
+  isString,
+  match(/^https:\/\/.+\.(jpg|jpeg|png|webp|avif|gif|svg)$/),
+];
 const bioRule = [required, isString, lengthBetween(1, 128)];
 const locationRule = [isString, lengthBetween(1, 128)];
 const markdownRule = [isString, match(/^https:\/\/.+\.(md)$/)];
 const rssRule = [isString, match(/^(https):\/\//)];
-const domainRule = (domain: string) => [required, isString, match(new RegExp(`^(https):\/\/${domain}\/`))];
+const domainRule = (
+  domain: string,
+) => [required, isString, match(new RegExp(`^(https):\/\/${domain}\/`))];
 const mailRule = [required, isEmail];
 
 const validateHttps = async (url: string | undefined) => {
@@ -38,7 +44,7 @@ const validateHttpsImage = async (avatar: string | undefined) => {
     avatar: imageRule,
   });
   return passes;
-}
+};
 
 const validateBio = async (bio: string | undefined) => {
   const [passes, _] = await validate({ bio }, {
@@ -55,10 +61,11 @@ const validateLocation = async (location: string | undefined) => {
 };
 
 const validateFeed = async (rss: string | undefined) => {
+  if (!rss) return true; // means that RSS was skipped
   const [passes, _] = await validate({ rss }, {
     rss: rssRule,
   });
-  if (!passes || !rss) return false;
+  if (!passes) return false;
   try {
     const response = await fetch(rss);
     const xml = await response.text();
@@ -67,21 +74,21 @@ const validateFeed = async (rss: string | undefined) => {
   } catch (_) {
     return false;
   }
-}
+};
 
 const validateDomain = async (url: string | undefined, domain: string) => {
   const [passes, _] = await validate({ url }, {
     url: domainRule(domain),
   });
-  return passes; 
-}
+  return passes;
+};
 
 const validateMail = async (mail: string | undefined) => {
   const [passes, _] = await validate({ mail }, {
     mail: mailRule,
   });
-  return passes; 
-}
+  return passes;
+};
 
 const validateHttpsMarkdown = async (readme: string | undefined) => {
   const [passes, _] = await validate({ readme }, {
@@ -91,13 +98,13 @@ const validateHttpsMarkdown = async (readme: string | undefined) => {
 };
 
 export {
-  validateHttps,
   validateBio,
-  validateLocation,
-  validateFeed,
   validateDomain,
-  validateMail,
+  validateFeed,
+  validateHttps,
+  validateHttpsImage,
   validateHttpsMarkdown,
+  validateLocation,
+  validateMail,
   validateUsername,
-  validateHttpsImage
 };
