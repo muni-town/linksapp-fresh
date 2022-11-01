@@ -12,7 +12,7 @@ import { existsSync } from "https://deno.land/std/fs/mod.ts";
 if (existsSync("./linksapp-fresh/")) {
   console.log(red("Folder linksapp-fresh/ already exists."));
   Deno.exit(1);
-} 
+}
 
 const usernameErrorMessage = "Username not valid";
 const bioErrorMessage = "Bio not valid";
@@ -380,11 +380,12 @@ const {
   mail,
   isBanner,
   bannerTitle,
-  bannerMessage
+  bannerMessage,
 } = promoptResult;
 
 const profile: Profile = {
-  $schema: "https://raw.githubusercontent.com/commune-org/linksapp-fresh/main/profile.schema.json",
+  $schema:
+    "https://raw.githubusercontent.com/commune-org/linksapp-fresh/main/profile.schema.json",
   avatar: avatar!,
   username: username!,
   bio: bio!,
@@ -407,7 +408,7 @@ if (isBanner) profile["banner"] = { title: bannerTitle!, text: bannerMessage! };
 let addLinks = true;
 
 while (addLinks) {
-  console.log("Adding a link 🔗")
+  console.log("Adding a link 🔗");
   const link = await prompt([{
     name: "title",
     type: Input,

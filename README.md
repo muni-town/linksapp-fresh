@@ -4,7 +4,8 @@
 
 ### Usage
 
-Navigate to the folder where you'd like to clone the repo and run the setup wizard:
+Navigate to the folder where you'd like to clone the repo and run the setup
+wizard:
 
 ```console
 deno run -A --unstable https://github.com/commune-org/linksapp-fresh/raw/main/setup.ts
@@ -12,7 +13,8 @@ deno run -A --unstable https://github.com/commune-org/linksapp-fresh/raw/main/se
 
 Push and deploy your repo using Deno Deploy.
 
-Don't forget to clear Deno cache if you're re-running the setup wizard after a new release:
+Don't forget to clear Deno cache if you're re-running the setup wizard after a
+new release:
 
 ```console
 deno cache --reload https://github.com/commune-org/linksapp-fresh/raw/main/setup.ts

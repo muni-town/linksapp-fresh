@@ -16,9 +16,9 @@ import fetchFeed from "../utils/rss.ts";
 
 type HandlerProps = {
   feed: {
-    title: string | undefined;
-    date: Date | undefined;
-    url: string | undefined;
+    title: string;
+    date: Date;
+    url: string;
   }[] | undefined;
 };
 

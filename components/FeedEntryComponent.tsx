@@ -8,7 +8,11 @@ const options: Intl.DateTimeFormatOptions = {
 
 export default function FeedEntryComponent(
   props: {
-    entry: { title: string; date: string; description: string; url?: string };
+    entry: {
+      title: string;
+      date: Date;
+      url: string;
+    };
   },
 ) {
   const { entry } = props;
