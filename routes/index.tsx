@@ -48,7 +48,7 @@ export default function Home({ data }: PageProps<HandlerProps | null>) {
     socialAccounts,
     banner,
     links,
-    rss,
+    readme,
   } = profile;
   const { feed } = data;
 
@@ -90,7 +90,7 @@ export default function Home({ data }: PageProps<HandlerProps | null>) {
           <UsernameComponent username={username} />
           <BioComponent bio={bio} />
           {location && <LocationComponent location={location} />}
-          {rss && <ReadmeButtonComponent />}
+          {readme && <ReadmeButtonComponent />}
           <SocialLinksComponent socialAccounts={socialAccounts} />
           {banner && (
             <BannerComponent

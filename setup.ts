@@ -510,5 +510,5 @@ if (!gitCommitStatus.success) {
   Deno.exit(1);
 }
 
-console.log(bold(yellow('✨ Push changes to your fork! Run: "git push origin main')));
+console.log(bold(yellow(`✨ Push changes to your fork! Run: "cd ${repoDir} && git push origin main`)));
 Deno.exit();
