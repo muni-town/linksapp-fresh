@@ -16,14 +16,16 @@ import {
 import { red, yellow } from "https://deno.land/std@0.161.0/fmt/colors.ts";
 
 console.log(yellow("Linksapp Setup Wizard 🪄"));
-console.log("Fork the repo -> https://github.com/commune-org/linksapp-fresh/fork")
+console.log(
+  "Fork the repo -> https://github.com/commune-org/linksapp-fresh/fork",
+);
 
 const repo: string = await Input.prompt({
   message: "Forked .git HTTPS URL:",
   minLength: 7,
 });
 
-const repoDir = repo.split("/").pop()?.replace('.git','');
+const repoDir = repo.split("/").pop()?.replace(".git", "");
 
 const cloneCmd = Deno.run({
   cmd: [
@@ -477,7 +479,7 @@ const gitAddCmd = Deno.run({
     "add",
     ".",
   ],
-  cwd: `./${repoDir}`
+  cwd: `./${repoDir}`,
 });
 
 const gitAddStatus = await gitAddCmd.status();
@@ -492,9 +494,9 @@ const gitCommitCmd = Deno.run({
     "git",
     "commit",
     "-m",
-    '"setup wizard"'
+    '"setup wizard"',
   ],
-  cwd: `./${repoDir}`
+  cwd: `./${repoDir}`,
 });
 
 const gitCommitStatus = await gitCommitCmd.status();
@@ -509,9 +511,9 @@ const gitPushCmd = Deno.run({
     "git",
     "push",
     "origin",
-    "main"
+    "main",
   ],
-  cwd: `./${repoDir}`
+  cwd: `./${repoDir}`,
 });
 
 const gitPushStatus = await gitPushCmd.status();
@@ -521,5 +523,5 @@ if (!gitPushStatus.success) {
   Deno.exit(1);
 }
 
-console.log(red('✨ Done!'));
+console.log(red("✨ Done!"));
 Deno.exit();
