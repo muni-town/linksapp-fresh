@@ -13,7 +13,7 @@ import {
   prompt,
 } from "https://deno.land/x/cliffy@v0.25.4/prompt/mod.ts";
 
-import { red, yellow } from "https://deno.land/std@0.161.0/fmt/colors.ts";
+import { red, yellow, bold } from "https://deno.land/std@0.161.0/fmt/colors.ts";
 
 console.log(yellow("Linksapp Setup Wizard 🪄"));
 console.log(
@@ -397,6 +397,8 @@ const {
   username,
   bio,
   location,
+  rss,
+  readme,
   dribbble,
   facebook,
   github,
@@ -422,6 +424,8 @@ const profile: Profile = {
 };
 
 if (location) profile["location"] = location;
+if (rss) profile["rss"] = rss;
+if (readme) profile["readme"] = readme;
 if (dribbble) profile.socialAccounts["dribbble"] = dribbble;
 if (facebook) profile.socialAccounts["facebook"] = facebook;
 if (github) profile.socialAccounts["github"] = github;
@@ -506,22 +510,5 @@ if (!gitCommitStatus.success) {
   Deno.exit(1);
 }
 
-const gitPushCmd = Deno.run({
-  cmd: [
-    "git",
-    "push",
-    "origin",
-    "main",
-  ],
-  cwd: `./${repoDir}`,
-});
-
-const gitPushStatus = await gitPushCmd.status();
-
-if (!gitPushStatus.success) {
-  console.log(red('💥 "git push" command failed. Something went wrong.'));
-  Deno.exit(1);
-}
-
-console.log(red("✨ Done!"));
+console.log(bold(yellow('✨ Push changes to your fork! Run: "git push origin main')));
 Deno.exit();
