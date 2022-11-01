@@ -1,5 +1,2 @@
 .vscode
 .DS_Store
-profile.json
-profile.schema.json
-profile.type.ts
