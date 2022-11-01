@@ -13,7 +13,7 @@ const options: Intl.DateTimeFormatOptions = {
 
 interface TabsProps {
   links: any[];
-  feed: any[];
+  feed: any[] | undefined;
 }
 
 export default function TabsIsland(props: TabsProps) {
@@ -24,7 +24,7 @@ export default function TabsIsland(props: TabsProps) {
   return (
     <div class="flex flex-wrap w-full">
       <div class="w-full">
-        <ul
+        {feed && <ul
           class="flex bg-gray-100 mb-0 list-none flex-wrap px-1 py-1 flex-row rounded-xl"
           role="tablist"
         >
@@ -64,7 +64,7 @@ export default function TabsIsland(props: TabsProps) {
               Feed
             </a>
           </li>
-        </ul>
+        </ul>}
         <div class="relative mt-4 flex flex-col bg-white w-full">
           <div class="flex-auto">
             <div>
@@ -82,7 +82,7 @@ export default function TabsIsland(props: TabsProps) {
                   {links.map((link) => <LinkComponent link={link} />)}
                 </ul>
               </div>
-              <div class={`${openTab === 2 ? "block space-y-3" : "hidden"}`}>
+              {feed && <div class={`${openTab === 2 ? "block space-y-3" : "hidden"}`}>
                 {feed.length === 0 &&
                   (
                     <div class="flex flex-col items-center space-y-1 py-8">
@@ -95,7 +95,7 @@ export default function TabsIsland(props: TabsProps) {
                 {feed.slice().sort((a, b) =>
                   (new Date(b.date)).getTime() - (new Date(a.date)).getTime()
                 ).map((entry) => <FeedEntryComponent entry={entry} />)}
-              </div>
+              </div>}
             </div>
           </div>
         </div>
