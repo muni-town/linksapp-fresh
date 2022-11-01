@@ -5,14 +5,16 @@ import {
   match,
   required,
   validate,
-} from "validasaur";
+} from "https://deno.land/x/validasaur@v0.15.0/mod.ts";
+
+import { parseFeed } from "https://deno.land/x/rss@0.5.6/mod.ts";
 
 const httpsRule = [required, isString, match(/^(https):\/\//)];
 const usernameRule = [required, isString, lengthBetween(1, 50)];
 const imageRule = [required, isString, match(/^https:\/\/.+\.(jpg|jpeg|png|webp|avif|gif|svg)$/)];
 const bioRule = [required, isString, lengthBetween(1, 128)];
 const locationRule = [isString, lengthBetween(1, 128)];
-const readmeRule = [isString, match(/^(https):\/\/(.*)(\.md)$/)];
+const markdownRule = [isString, match(/^https:\/\/.+\.(md)$/)];
 const rssRule = [isString, match(/^(https):\/\//)];
 const domainRule = (domain: string) => [required, isString, match(new RegExp(`^(https):\/\/${domain}\/`))];
 const mailRule = [required, isEmail];
@@ -56,7 +58,15 @@ const validateFeed = async (rss: string | undefined) => {
   const [passes, _] = await validate({ rss }, {
     rss: rssRule,
   });
-  return passes; 
+  if (!passes || !rss) return false;
+  try {
+    const response = await fetch(rss);
+    const xml = await response.text();
+    const _ = await parseFeed(xml);
+    return true;
+  } catch (_) {
+    return false;
+  }
 }
 
 const validateDomain = async (url: string | undefined, domain: string) => {
@@ -73,9 +83,9 @@ const validateMail = async (mail: string | undefined) => {
   return passes; 
 }
 
-const validateReadme = async (readme: string | undefined) => {
+const validateHttpsMarkdown = async (readme: string | undefined) => {
   const [passes, _] = await validate({ readme }, {
-    readme: readmeRule,
+    readme: markdownRule,
   });
   return passes;
 };
@@ -87,7 +97,7 @@ export {
   validateFeed,
   validateDomain,
   validateMail,
-  validateReadme,
+  validateHttpsMarkdown,
   validateUsername,
   validateHttpsImage
 };
