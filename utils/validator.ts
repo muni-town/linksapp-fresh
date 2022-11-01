@@ -9,6 +9,7 @@ import {
 
 const httpsRule = [required, isString, match(/^(https):\/\//)];
 const usernameRule = [required, isString, lengthBetween(1, 50)];
+const imageRule = [required, isString, match(/^https:\/\/.+\.(jpg|jpeg|png|webp|avif|gif|svg)$/)];
 const bioRule = [required, isString, lengthBetween(1, 128)];
 const locationRule = [isString, lengthBetween(1, 128)];
 const readmeRule = [isString, match(/^(https):\/\/(.*)(\.md)$/)];
@@ -16,9 +17,9 @@ const rssRule = [isString, match(/^(https):\/\//)];
 const domainRule = (domain: string) => [required, isString, match(new RegExp(`^(https):\/\/${domain}\/`))];
 const mailRule = [required, isEmail];
 
-const validateHttps = async (avatar: string | undefined) => {
-  const [passes, _] = await validate({ avatar }, {
-    avatar: httpsRule,
+const validateHttps = async (url: string | undefined) => {
+  const [passes, _] = await validate({ url }, {
+    url: httpsRule,
   });
   return passes;
 };
@@ -29,6 +30,13 @@ const validateUsername = async (username: string | undefined) => {
   });
   return passes;
 };
+
+const validateHttpsImage = async (avatar: string | undefined) => {
+  const [passes, _] = await validate({ avatar }, {
+    avatar: imageRule,
+  });
+  return passes;
+}
 
 const validateBio = async (bio: string | undefined) => {
   const [passes, _] = await validate({ bio }, {
@@ -81,4 +89,5 @@ export {
   validateMail,
   validateReadme,
   validateUsername,
+  validateHttpsImage
 };
