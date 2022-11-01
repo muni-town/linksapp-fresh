@@ -4,13 +4,19 @@
 
 ### Usage
 
-Adjust `profile.json` accordingly and start the project:
+Navigate to the folder where you'd like to clone the repo and run the setup wizard:
 
-```
-deno task start
+```console
+deno run --unstable https://github.com/commune-org/linksapp-fresh/raw/main/setup.ts
 ```
 
-or deploy using Deno Deploy.
+Push and deploy your repo using Deno Deploy.
+
+Don't forget to clear Deno cache if you're re-running the setup wizard after a new release:
+
+```console
+deno cache --reload https://github.com/commune-org/linksapp-fresh/raw/main/setup.ts
+```
 
 ### Features
 
