@@ -6,7 +6,7 @@
 
 ### Step 1: Fork
 
-[<kbd><br> ✨ FORK THIS REPO ✨ <br></kbd>](https://github.com/commune-org/linksapp-fresh/fork)
+[<kbd> <br> ✨ FORK THIS REPO ✨ <br> </kbd>](https://github.com/commune-org/linksapp-fresh/fork)
 
 ### Step 2: Run Setup Wizard
 
