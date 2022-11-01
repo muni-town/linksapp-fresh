@@ -7,7 +7,7 @@
 Navigate to the folder where you'd like to clone the repo and run the setup wizard:
 
 ```console
-deno run --unstable https://github.com/commune-org/linksapp-fresh/raw/main/setup.ts
+deno run -A --unstable https://github.com/commune-org/linksapp-fresh/raw/main/setup.ts
 ```
 
 Push and deploy your repo using Deno Deploy.
