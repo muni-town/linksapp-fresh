@@ -7,6 +7,13 @@ import {
 
 import { red } from "https://deno.land/std@0.161.0/fmt/colors.ts";
 
+import { existsSync } from "https://deno.land/std/fs/mod.ts";
+
+if (existsSync("./linksapp-fresh/")) {
+  console.log(red("Folder linksapp-fresh/ already exists."));
+  Deno.exit(1);
+} 
+
 const usernameErrorMessage = "Username not valid";
 const bioErrorMessage = "Bio not valid";
 const locationErrorMessage = "Location not valid";
