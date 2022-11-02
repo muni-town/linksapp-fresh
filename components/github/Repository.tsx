@@ -38,9 +38,11 @@ export default function Repository({
       <p class={`mt-2 text-sm text-gray-500`}>{description}</p>
 
       <div class={`mt-4 flex items-center space-x-4`}>
-        <div>
-          <p class={`text-sm text-gray-600`}> {language}</p>
-        </div>
+        {language && (
+          <div>
+            <p class={`text-sm text-gray-600`}> {language}</p>
+          </div>
+        )}
         <div class={`flex items-center space-x-2`}>
           <div>
             <svg
