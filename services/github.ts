@@ -15,9 +15,9 @@ async function fetchFollowers(username: string) {
   return response.json();
 }
 
-async function fetchFollowing(username: string) {
+async function fetchFollowings(username: string) {
   const response = await fetch(`${GITHUB_API}/users/${username}/following`);
   return response.json();
 }
 
-export { fetchFollowers, fetchFollowing, fetchUserInfo, fetchRepositories };
+export { fetchFollowers, fetchFollowings, fetchUserInfo, fetchRepositories };
