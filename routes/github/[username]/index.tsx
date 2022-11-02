@@ -59,7 +59,7 @@ export default function Github({ data, params }: PageProps) {
 
             <div class={`mt-4 flex items-center space-x-2`}>
               <a
-                href={`/${username}/followers`}
+                href={`/github/${username}/followers`}
                 class={`flex items-center space-x-1 group`}
               >
                 <UsersIcon />
