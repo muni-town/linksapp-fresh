@@ -14,7 +14,13 @@
 deno run -A --unstable https://github.com/commune-org/linksapp-fresh/raw/main/setup.ts
 ```
 
-### Step 3: Deno Deploy
+### Step 3: Deploy
+
+Check your page locally:
+
+```console
+deno task start
+```
 
 Head over to [Deno Deploy](https://deno.com) and create a project. Click "Git"
 tab in the project settings, select the repository, the production branch
