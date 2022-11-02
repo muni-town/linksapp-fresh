@@ -48,26 +48,26 @@ export default function Github({ data, params }: PageProps) {
             <img
               src={user.avatar_url}
               alt={user.name}
-              className={`w-64 h-64  rounded-full`}
+              class={`w-64 h-64  rounded-full`}
             />
 
-            <div className={`mt-4`}>
-              <h2 className={`text-2xl font-bold`}>{user.name}</h2>
-              <h2 className={`text-xl text-gray-500`}>{user.login}</h2>
+            <div class={`mt-4`}>
+              <h2 class={`text-2xl font-bold`}>{user.name}</h2>
+              <h2 class={`text-xl text-gray-500`}>{user.login}</h2>
             </div>
-            <p className={`mt-4 text-gray-700 max-w-md`}>{user.bio}</p>
+            <p class={`mt-4 text-gray-700 max-w-md`}>{user.bio}</p>
 
-            <div className={`mt-4 flex items-center space-x-2`}>
+            <div class={`mt-4 flex items-center space-x-2`}>
               <a
                 href={`/${username}/followers`}
-                className={`flex items-center space-x-1 group`}
+                class={`flex items-center space-x-1 group`}
               >
                 <UsersIcon />
-                <p className={`font-medium group-hover:text-blue-500`}>
+                <p class={`font-medium group-hover:text-blue-500`}>
                   {user.followers}
                 </p>
                 <p
-                  className={`text-gray-600 text-sm group-hover:text-blue-500`}
+                  class={`text-gray-600 text-sm group-hover:text-blue-500`}
                 >
                   {user.followers > 1 ? "followers" : "follower"}
                 </p>
@@ -75,20 +75,20 @@ export default function Github({ data, params }: PageProps) {
               <span>&bull;</span>
               <a
                 href={`/${username}/following`}
-                className={`flex items-center space-x-1 hover:text-blue-500 group`}
+                class={`flex items-center space-x-1 hover:text-blue-500 group`}
               >
-                <p className={`font-medium group-hover:text-blue-500`}>
+                <p class={`font-medium group-hover:text-blue-500`}>
                   {user.following}
                 </p>
                 <p
-                  className={`text-gray-600 text-sm group-hover:text-blue-500`}
+                  class={`text-gray-600 text-sm group-hover:text-blue-500`}
                 >
                   {user.following > 1 ? "followings" : "following"}
                 </p>
               </a>
             </div>
 
-            <div className={`mt-4 flex flex-col space-y-2`}>
+            <div class={`mt-4 flex flex-col space-y-2`}>
               {user.company && (
                 <InfoItem text={user.company} icon={<CompanyIcon />} />
               )}
@@ -116,7 +116,7 @@ export default function Github({ data, params }: PageProps) {
               <li>
                 <a
                   href={`/github/${username}/${link.href}`}
-                  className=" hover:bg-gray-200 bg-gray-100  px-4 py-2 rounded-full"
+                  class=" hover:bg-gray-200 bg-gray-100  px-4 py-2 rounded-full"
                 >
                   <span>{link.name}</span>
                 </a>

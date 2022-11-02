@@ -7,18 +7,18 @@ interface InfoItemProps {
 }
 export default function InfoItem({ text, icon, link = "" }: InfoItemProps) {
   return (
-    <div className="flex items-center space-x-2">
+    <div class="flex items-center space-x-2">
       {icon}
       {link ? (
         <a
           href={link}
           target="_blank"
-          className="text-gray-700 hover:text-blue-500 hover:underline"
+          class="text-gray-700 hover:text-blue-500 hover:underline"
         >
           {text}
         </a>
       ) : (
-        <p className="text-gray-700">{text}</p>
+        <p class="text-gray-700">{text}</p>
       )}
     </div>
   );

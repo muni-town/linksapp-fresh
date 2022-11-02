@@ -39,9 +39,9 @@ export default function Repositories({
   const username = params.username;
   return (
     <GithubLayout title={`${username} | Repository`}>
-      <div className={`max-w-5xl mx-auto `}>
+      <div class={`max-w-5xl mx-auto `}>
         <PageTitle title="Repositories" backHref={`/github/${username}`} />
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 mt-4`}>
+        <div class={`grid grid-cols-1 md:grid-cols-2 gap-4 mt-4`}>
           {repos.map((repo) => (
             <Repository
               id={repo.id}
