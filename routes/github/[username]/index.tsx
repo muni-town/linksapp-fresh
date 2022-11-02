@@ -7,7 +7,6 @@ import CompanyIcon from "../../../icons/CompanyIcon.tsx";
 import LinkIcon from "../../../icons/LinkIcon.tsx";
 import TwitterIcon from "../../../icons/TwitterIcon.tsx";
 import UsersIcon from "../../../icons/UsersIcon.tsx";
-import BackIcon from "../../../icons/BackIcon.tsx";
 import { Status } from "https://deno.land/std@0.146.0/http/http_status.ts";
 import PageTitle from "../../../components/github/PageTitle.tsx";
 
@@ -66,23 +65,19 @@ export default function Github({ data, params }: PageProps) {
                 <p class={`font-medium group-hover:text-blue-500`}>
                   {user.followers}
                 </p>
-                <p
-                  class={`text-gray-600 text-sm group-hover:text-blue-500`}
-                >
+                <p class={`text-gray-600 text-sm group-hover:text-blue-500`}>
                   {user.followers > 1 ? "followers" : "follower"}
                 </p>
               </a>
               <span>&bull;</span>
               <a
-                href={`/${username}/following`}
+                href={`/github/${username}/followings`}
                 class={`flex items-center space-x-1 hover:text-blue-500 group`}
               >
                 <p class={`font-medium group-hover:text-blue-500`}>
                   {user.following}
                 </p>
-                <p
-                  class={`text-gray-600 text-sm group-hover:text-blue-500`}
-                >
+                <p class={`text-gray-600 text-sm group-hover:text-blue-500`}>
                   {user.following > 1 ? "followings" : "following"}
                 </p>
               </a>
