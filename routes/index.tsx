@@ -15,11 +15,13 @@ import ReadmeButtonComponent from "../components/ReadmeButtonComponent.tsx";
 import fetchFeed from "../utils/rss.ts";
 
 type HandlerProps = {
-  feed: {
-    title: string;
-    date: Date;
-    url: string;
-  }[] | undefined;
+  feed:
+    | {
+        title: string;
+        date: Date;
+        url: string;
+      }[]
+    | undefined;
 };
 
 export const handler: Handlers<HandlerProps | null> = {
@@ -86,7 +88,12 @@ export default function Home({ data }: PageProps<HandlerProps | null>) {
     <main class="w-10/12 sm:w-96 mx-auto">
       <div class="flex flex-col w-full mt-12 mb-28">
         <div class="flex flex-col items-center w-full w-full rounded-xl p-4">
-          <div class="my-4">
+          <AvatarComponent avatar={avatar} />
+          <UsernameComponent username={username} />
+          <BioComponent bio={bio} />
+          {location && <LocationComponent location={location} />}
+          {readme && <ReadmeButtonComponent />}
+          <div class="mb-4">
             <a
               href="/github/harshmangalam"
               class="bg-gray-100 hover:bg-gray-200 rounded-full px-4 py-2"
@@ -95,23 +102,8 @@ export default function Home({ data }: PageProps<HandlerProps | null>) {
             </a>
           </div>
           <SocialLinksComponent socialAccounts={socialAccounts} />
-          {announcement && (
-            <BannerComponent
-              title={announcement.title}
-              text={announcement.text}
-            />
-          )}
-          <AvatarComponent avatar={avatar} />
-          <UsernameComponent username={username} />
-          <BioComponent bio={bio} />
-          {location && <LocationComponent location={location} />}
-          {readme && <ReadmeButtonComponent />}
-          <SocialLinksComponent socialAccounts={socialAccounts} />
           {banner && (
-            <BannerComponent
-              title={banner.title}
-              text={banner.text}
-            />
+            <BannerComponent title={banner.title} text={banner.text} />
           )}
           <TabsIsland links={links} feed={feed} />
         </div>
