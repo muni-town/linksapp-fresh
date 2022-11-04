@@ -86,6 +86,21 @@ export default function Home({ data }: PageProps<HandlerProps | null>) {
     <main class="w-10/12 sm:w-96 mx-auto">
       <div class="flex flex-col w-full mt-12 mb-28">
         <div class="flex flex-col items-center w-full w-full rounded-xl p-4">
+          <div class="my-4">
+            <a
+              href="/github/harshmangalam"
+              class="bg-gray-100 hover:bg-gray-200 rounded-full px-4 py-2"
+            >
+              Github
+            </a>
+          </div>
+          <SocialLinksComponent socialAccounts={socialAccounts} />
+          {announcement && (
+            <BannerComponent
+              title={announcement.title}
+              text={announcement.text}
+            />
+          )}
           <AvatarComponent avatar={avatar} />
           <UsernameComponent username={username} />
           <BioComponent bio={bio} />
