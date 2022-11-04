@@ -1,4 +1,5 @@
 type Profile = {
+  $schema: string;
   avatar: string;
   username: string;
   bio: string;
@@ -15,7 +16,7 @@ type Profile = {
     website?: string;
     mail?: string;
   };
-  announcement?: {
+  banner?: {
     title: string;
     text: string;
   };

@@ -1,6 +1,6 @@
 import { css, tw } from "twind/css";
 
-export default function ProfilePictureComponent(props: { avatar: string }) {
+export default function AvatarComponent(props: { avatar: string }) {
   const { avatar } = props;
   return (
     <div

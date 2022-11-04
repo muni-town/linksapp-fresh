@@ -1,61 +1,78 @@
-import { Instagram, Linkedin, Twitter, Youtube } from "preact-feather";
+import {
+  Dribbble,
+  Facebook,
+  Github,
+  Globe,
+  Instagram,
+  Linkedin,
+  Mail,
+  Twitter,
+  Youtube,
+} from "preact-feather";
+import SocialLinkWrapperComponent from "./SocialLinkWrapperComponent.tsx";
 
-export default function SocialLinksComponent(props: { socialAccounts: any }) {
+import type Profile from "../profile.type.ts";
+
+export default function SocialLinksComponent(
+  props: { socialAccounts: Profile["socialAccounts"] },
+) {
   const { socialAccounts } = props;
+
+  const svgProps = {
+    size: 18,
+    color: "#1f2937",
+    "stroke-width": 2.5,
+  };
 
   return (
     <div>
       <div class="flex justify-center mb-6 space-x-2">
         {socialAccounts?.twitter && (
-          <a
-            class="rounded-full p-3 bg-gray-100"
-            href={socialAccounts.twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Twitter size={18} color="#1f2937" stroke-width={2.5} />
-          </a>
+          <SocialLinkWrapperComponent href={socialAccounts.twitter}>
+            <Twitter {...svgProps} />
+          </SocialLinkWrapperComponent>
         )}
         {socialAccounts?.instagram && (
-          <a
-            class="rounded-full p-3 bg-gray-100"
-            href={socialAccounts.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Instagram size={18} color="#1f2937" stroke-width={2.5} />
-          </a>
+          <SocialLinkWrapperComponent href={socialAccounts.instagram}>
+            <Instagram {...svgProps} />
+          </SocialLinkWrapperComponent>
         )}
         {socialAccounts?.youtube && (
-          <a
-            class="rounded-full p-3 bg-gray-100"
-            href={socialAccounts.youtube}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Youtube size={18} color="#1f2937" stroke-width={2.5} />
-          </a>
+          <SocialLinkWrapperComponent href={socialAccounts.youtube}>
+            <Youtube {...svgProps} />
+          </SocialLinkWrapperComponent>
         )}
         {socialAccounts?.linkedin && (
-          <a
-            class="rounded-full p-3 bg-gray-100"
-            href={socialAccounts.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Linkedin size={18} color="#1f2937" stroke-width={2.5} />
-          </a>
+          <SocialLinkWrapperComponent href={socialAccounts.linkedin}>
+            <Linkedin {...svgProps} />
+          </SocialLinkWrapperComponent>
+        )}
+        {socialAccounts?.facebook && (
+          <SocialLinkWrapperComponent href={socialAccounts.facebook}>
+            <Facebook {...svgProps} />
+          </SocialLinkWrapperComponent>
+        )}
+        {socialAccounts?.github && (
+          <SocialLinkWrapperComponent href={socialAccounts.github}>
+            <Github {...svgProps} />
+          </SocialLinkWrapperComponent>
+        )}
+        {socialAccounts?.dribbble && (
+          <SocialLinkWrapperComponent href={socialAccounts.dribbble}>
+            <Dribbble {...svgProps} />
+          </SocialLinkWrapperComponent>
+        )}
+        {socialAccounts?.website && (
+          <SocialLinkWrapperComponent href={socialAccounts.website}>
+            <Globe {...svgProps} />
+          </SocialLinkWrapperComponent>
+        )}
+        {socialAccounts?.mail && (
+          <SocialLinkWrapperComponent href={`mailto:${socialAccounts.mail}`}>
+            <Mail {...svgProps} />
+          </SocialLinkWrapperComponent>
         )}
       </div>
-      <svg width="0" height="0">
-        <radialGradient id="ig-gradient" r="150%" cx="30%" cy="107%">
-          <stop stop-color="#fdf497" offset="0" />
-          <stop stop-color="#fdf497" offset="0.05" />
-          <stop stop-color="#fd5949" offset="0.45" />
-          <stop stop-color="#d6249f" offset="0.6" />
-          <stop stop-color="#285AEB" offset="0.9" />
-        </radialGradient>
-      </svg>
     </div>
   );
 }

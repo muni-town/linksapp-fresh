@@ -1,73 +1,91 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { links, user } from "../config.ts";
+import jsonProfile from "../profile.json" assert { type: "json" };
+import type Profile from "../profile.type.ts";
 
-import { parseFeed } from "rss/mod.ts";
-import { unescape } from "unescape";
-
-import ProfilePictureComponent from "../components/ProfilePictureComponent.tsx";
+import AvatarComponent from "../components/AvatarComponent.tsx";
 import UsernameComponent from "../components/UsernameComponent.tsx";
 import BioComponent from "../components/BioComponent.tsx";
+import LocationComponent from "../components/LocationComponent.tsx";
 import SocialLinksComponent from "../components/SocialLinksComponent.tsx";
 import BannerComponent from "../components/BannerComponent.tsx";
 import TabsIsland from "../islands/TabsIsland.tsx";
+import ProfileMisconfigComponent from "../components/ProfileMisconfigComponent.tsx";
+import ReadmeButtonComponent from "../components/ReadmeButtonComponent.tsx";
 
-export const handler: Handlers<any | null> = {
+import fetchFeed from "../utils/rss.ts";
+
+type HandlerProps = {
+  feed: {
+    title: string;
+    date: Date;
+    url: string;
+  }[] | undefined;
+};
+
+export const handler: Handlers<HandlerProps | null> = {
   async GET(_, ctx) {
-    const { rss } = user;
+    const profile: Profile = jsonProfile;
+    const { rss } = profile;
 
-    const response = await fetch(rss);
-    const xml = await response.text();
-    const { entries } = await parseFeed(xml);
-
-    const updates = entries.map((entry) => {
-      const title = entry.title?.value;
-      const date = entry.published;
-      const url = entry.links[0].href;
-
-      let descriptionContent = unescape(entry.description?.value || "");
-      const cdataTag = descriptionContent.slice(0, 9);
-      if (cdataTag === "<![CDATA[") {
-        descriptionContent = descriptionContent.slice(9, -3);
-      }
-      let description = "";
-      const words = descriptionContent.split(" ");
-      for (const [index, word] of words.entries()) {
-        if (index === 12) {
-          description += "...";
-          break;
-        }
-        description += " " + word;
-      }
-
-      return {
-        title,
-        date,
-        description,
-        url,
-      };
-    });
+    let feed = undefined;
+    if (rss) feed = await fetchFeed(rss);
 
     return ctx.render({
-      updates,
+      feed,
     });
   },
 };
 
-export default function Home({ data }: PageProps<any | null>) {
-  if (!data) {
-    return <h1>Failed to fetch external data.</h1>;
-  }
+export default function Home({ data }: PageProps<HandlerProps | null>) {
+  if (!data) return <h1>Profile misconfiguration.</h1>;
 
-  const { avatar, bio, username, announcement, socialAccounts } = user;
-  const { updates } = data;
+  const profile: Profile = jsonProfile;
+  const {
+    avatar,
+    username,
+    bio,
+    location,
+    socialAccounts,
+    banner,
+    links,
+    readme,
+  } = profile;
+  const { feed } = data;
+
+  // validate profile configuration
+  if (!avatar) {
+    return (
+      <ProfileMisconfigComponent>
+        Property <i>avatar</i> can't be empty.
+      </ProfileMisconfigComponent>
+    );
+  }
+  if (!username) {
+    return (
+      <ProfileMisconfigComponent>
+        Property <i>username</i> can't be empty.
+      </ProfileMisconfigComponent>
+    );
+  }
+  if (!bio) {
+    return (
+      <ProfileMisconfigComponent>
+        Property <i>bio</i> can't be empty.
+      </ProfileMisconfigComponent>
+    );
+  }
+  if (links.length === 0) {
+    return (
+      <ProfileMisconfigComponent>
+        Property <i>links</i> can't be of length zero.
+      </ProfileMisconfigComponent>
+    );
+  }
 
   return (
     <main class="w-10/12 sm:w-96 mx-auto">
       <div class="flex flex-col w-full mt-12 mb-28">
         <div class="flex flex-col items-center w-full w-full rounded-xl p-4">
-          <ProfilePictureComponent avatar={avatar} />
-          <UsernameComponent username={username} />
-          <BioComponent bio={bio} />
           <div class="my-4">
             <a
               href="/github/harshmangalam"
@@ -83,7 +101,19 @@ export default function Home({ data }: PageProps<any | null>) {
               text={announcement.text}
             />
           )}
-          <TabsIsland links={links} updates={updates} />
+          <AvatarComponent avatar={avatar} />
+          <UsernameComponent username={username} />
+          <BioComponent bio={bio} />
+          {location && <LocationComponent location={location} />}
+          {readme && <ReadmeButtonComponent />}
+          <SocialLinksComponent socialAccounts={socialAccounts} />
+          {banner && (
+            <BannerComponent
+              title={banner.title}
+              text={banner.text}
+            />
+          )}
+          <TabsIsland links={links} feed={feed} />
         </div>
       </div>
     </main>
