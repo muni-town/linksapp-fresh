@@ -24,7 +24,7 @@ export default function FeedEntryComponent(
       rel="noopener noreferrer"
       class="block"
     >
-      <div class="relative bg-white rounded-2xl px-4 py-4 shadow">
+      <div class="relative bg-white hover:bg-gray-100 rounded-2xl px-4 py-4 shadow">
         <h2 class="text-lg font-bold text-gray-900 leading-snug mb-1 pr-5">
           {entry.title}
         </h2>

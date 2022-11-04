@@ -5,7 +5,7 @@ export default function SocialLinkWrapperComponent(
 ) {
   return (
     <a
-      class="rounded-full p-3 bg-gray-100"
+      class="rounded-full p-3 bg-gray-100 hover:bg-gray-200"
       href={props.href}
       target="_blank"
       rel="noopener noreferrer"

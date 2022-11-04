@@ -36,7 +36,7 @@ export default function ReadmePage({ data }: PageProps<HandlerProps>) {
   return (
     <div>
       <a
-        class="bg-gray-100 px-2 py-2 rounded-lg fixed top-4 left-4"
+        class="bg-gray-100 hover:bg-gray-200 px-2 py-2 rounded-lg fixed top-4 left-4"
         href="/"
       >
         <ArrowLeft size={18} color="#1f2937" stroke-width={2.5} />

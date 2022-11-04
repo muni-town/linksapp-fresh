@@ -40,8 +40,8 @@ export default function TabsIsland(props: TabsProps) {
               <a
                 class={`rounded-lg text-xs font-bold px-1 py-1 block leading-normal ${
                   openTab === 1
-                    ? "text-gray-900 shadow bg-white"
-                    : "text-gray-600"
+                    ? "text-gray-900 shadow bg-white hover:bg-white"
+                    : "text-gray-600 hover:bg-gray-200"
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
@@ -58,8 +58,8 @@ export default function TabsIsland(props: TabsProps) {
               <a
                 class={`rounded-lg text-xs font-bold px-1 py-1 block leading-normal ${
                   openTab === 2
-                    ? "text-gray-900 shadow bg-white"
-                    : "text-gray-600"
+                    ? "text-gray-900 shadow bg-white hover:bg-white"
+                    : "text-gray-600 hover:bg-gray-200"
                 }`}
                 onClick={(e) => {
                   e.preventDefault();

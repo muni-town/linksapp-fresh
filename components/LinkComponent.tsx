@@ -8,7 +8,7 @@ export default function LinkComponent(
   return (
     <li>
       <a
-        class="flex justify-between bg-gray-100 rounded-lg px-6 py-3 w-full items-center"
+        class="flex justify-between bg-gray-100 hover:bg-gray-200 rounded-lg px-6 py-3 w-full items-center"
         href={link.url}
         target="_blank"
         rel="noopener noreferrer"
