@@ -53,7 +53,7 @@ export default function SocialLinksComponent(
           </SocialLinkWrapperComponent>
         )}
         {socialAccounts?.github && (
-          <SocialLinkWrapperComponent href={socialAccounts.github}>
+          <SocialLinkWrapperComponent target="_self" href={socialAccounts.github}>
             <Github {...svgProps} />
           </SocialLinkWrapperComponent>
         )}
