@@ -61,7 +61,9 @@ export default function Github({ data, params }: PageProps) {
                 href={`/github/${username}/followers`}
                 class={`flex items-center space-x-1 group`}
               >
-                <UsersIcon />
+                <div class={`text-gray-600 group-hover:text-blue-500`}>
+                  <UsersIcon />
+                </div>
                 <p class={`font-medium group-hover:text-blue-500`}>
                   {user.followers}
                 </p>
@@ -85,23 +87,45 @@ export default function Github({ data, params }: PageProps) {
 
             <div class={`mt-4 flex flex-col space-y-2`}>
               {user.company && (
-                <InfoItem text={user.company} icon={<CompanyIcon />} />
+                <InfoItem
+                  text={user.company}
+                  icon={
+                    <div class={`text-gray-600`}>
+                      <CompanyIcon />
+                    </div>
+                  }
+                />
               )}
               {user.location && (
-                <InfoItem text={user.location} icon={<LocationIcon />} />
+                <InfoItem
+                  text={user.location}
+                  icon={
+                    <div class={`text-gray-600`}>
+                      <LocationIcon />
+                    </div>
+                  }
+                />
               )}
               {user.blog && (
                 <InfoItem
                   link={user.blog}
                   text={user.blog}
-                  icon={<LinkIcon />}
+                  icon={
+                    <div class={`text-gray-600`}>
+                      <LinkIcon />
+                    </div>
+                  }
                 />
               )}
               {user.twitter_username && (
                 <InfoItem
                   link={`https://twitter.com/${user.twitter_username}`}
                   text={`@${user.twitter_username}`}
-                  icon={<TwitterIcon />}
+                  icon={
+                    <div class={`text-gray-600`}>
+                      <TwitterIcon />
+                    </div>
+                  }
                 />
               )}
             </div>

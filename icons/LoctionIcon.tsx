@@ -1,23 +1,16 @@
 export default function LocationIcon() {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-6 w-6"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={2}
+      viewBox="0 0 16 16"
+      version="1.1"
+      width="16"
+      height="16"
+      aria-hidden="true"
     >
       <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-      />
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-      />
+        fill="currentColor"
+        d="M11.536 3.464a5 5 0 010 7.072L8 14.07l-3.536-3.535a5 5 0 117.072-7.072v.001zm1.06 8.132a6.5 6.5 0 10-9.192 0l3.535 3.536a1.5 1.5 0 002.122 0l3.535-3.536zM8 9a2 2 0 100-4 2 2 0 000 4z"
+      ></path>
     </svg>
   );
 }
