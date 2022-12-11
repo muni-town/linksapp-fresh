@@ -41,7 +41,7 @@ export default function Github({ data, params }: PageProps) {
   return (
     <GithubLayout title={`Github | ${username}`}>
       <div class={`max-w-3xl mx-auto`}>
-        <PageTitle title="Go to home" backHref="/" />
+        <PageTitle backHref="/" />
         <div class="mt-6">
           <div>
             <img

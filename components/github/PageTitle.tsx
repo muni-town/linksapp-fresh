@@ -1,28 +1,20 @@
+import { ArrowLeft } from "preact-feather";
+
 interface PageTitleProps {
-  title: string;
+  title?: string;
   backHref: string;
 }
 
 export default function PageTitle({ title, backHref }: PageTitleProps) {
   return (
-    <div class="flex space-x-4 items-center">
-      <a href={backHref}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M10 19l-7-7m0 0l7-7m-7 7h18"
-          />
-        </svg>
+    <div>
+      <a
+        class="bg-gray-100 hover:bg-gray-200 px-2 py-2 rounded-lg fixed top-4 left-4"
+        href={backHref}
+      >
+        <ArrowLeft size={18} color="#1f2937" stroke-width={2.5} />
       </a>
-      <h1 class="text-2xl font-semibold text-gray-600">{title}</h1>
+      {title && <h1 class="text-2xl font-semibold text-gray-600">{title}</h1>}
     </div>
   );
 }
